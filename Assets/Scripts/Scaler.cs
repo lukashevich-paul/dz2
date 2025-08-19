@@ -17,9 +17,13 @@ public class Scaler : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
 
-        if (scale.x > _maxScale || scale.x < _minScale)
+        if (scale.x >= _maxScale)
         {
-            _currentSpeed *= -1;
+            _currentSpeed = -_scaleSpeed;
+        }
+        else if (scale.x <= _minScale)
+        {
+            _currentSpeed = _scaleSpeed;
         }
 
         float newValue = _currentSpeed * Time.deltaTime;
