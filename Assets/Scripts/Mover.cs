@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Mover : MonoBehaviour
@@ -8,28 +9,25 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _speed = 3f;
     [SerializeField] private float _oneWayDistance = 3f;
 
-    private float _distance;
     private int _direction;
+    private Vector3 _startPosition;
 
     private void Start()
     {
-        _distance = 0;
         _direction = MainDirection;
+        _startPosition = transform.position;
     }
 
     private void Update()
     {
-        Vector3 position = transform.position;
-        float move = _speed * Time.deltaTime * _direction;
-
-        _distance += move;
-
-        if (_oneWayDistance <= _distance || _distance <= -_oneWayDistance)
+        if (_oneWayDistance > 0f)
         {
-            _direction *= ReversDirection;
+            if (_oneWayDistance + _startPosition.z <= transform.position.z || transform.position.z <= -(_oneWayDistance + _startPosition.z))
+            {
+                _direction *= ReversDirection;
+            }
         }
 
-        position.z += move;
-        transform.position = position;
+        transform.Translate(Vector3.forward * _speed * _direction * Time.deltaTime);
     }
 }
