@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Scale : MonoBehaviour
+public class Scaler : MonoBehaviour
 {
     [SerializeField] private float _minScale = 0.5f;
     [SerializeField] private float _maxScale = 2f;
@@ -13,7 +13,7 @@ public class Scale : MonoBehaviour
         _targetScale = _maxScale;
     }
 
-    void Update()
+    private void Update()
     {
         Vector3 scale = transform.localScale;
 
@@ -27,6 +27,12 @@ public class Scale : MonoBehaviour
         }
 
         float newValue = _targetScale * Time.deltaTime;
-        transform.localScale += new Vector3(newValue, newValue, newValue);
+        Scale(newValue);
+    }
+
+    private void Scale(float value)
+    {
+        float newValue = _targetScale * Time.deltaTime;
+        transform.localScale += new Vector3(value, value, value);
     }
 }

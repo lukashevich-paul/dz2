@@ -11,7 +11,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float _minScale = 0.2f;
     [SerializeField] private float _maxScale = 3f;
 
-    void Update()
+    private void Update()
     {
         Move();
         Rotate();
@@ -35,7 +35,6 @@ public class CharacterController : MonoBehaviour
 
     private void Scale()
     {
-
         float rotation = Input.GetAxis(Horizontal);
         float newValue = rotation * _scaleSpeed * Time.deltaTime;
 

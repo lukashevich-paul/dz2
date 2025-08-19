@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class Mover : MonoBehaviour
 {
     public const int MainDirection = 1;
     public const int ReversDirection = -1;
@@ -11,13 +11,13 @@ public class Move : MonoBehaviour
     private float _distance;
     private int _direction;
 
-    void Start()
+    private void Start()
     {
         _distance = 0;
         _direction = MainDirection;
     }
 
-    void Update()
+    private void Update()
     {
         Vector3 position = transform.position;
         float move = _speed * Time.deltaTime * _direction;
